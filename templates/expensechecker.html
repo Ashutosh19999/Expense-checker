@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense-Checker</title>
+</head>
+
+<body>
+    <h1 style="text-align:center;color:red;font-size:50px;">Expense-Checker</h1>
+    <br>
+    <form style="position: absolute;left:600px" action="addexpense" method="post">
+        <br> {% csrf_token %}
+        <p style="position: absolute;width:30px;top:-40px;width:150px;left:70px">Add the expenses here.</p>
+        <label style="position: absolute;left:-15px">Expense:</label><input type="text" name="expense" style="width:200px;position:absolute;left:50px">
+        <br>
+        <br>
+        <label style="position: absolute;left:-12px">Amount:</label><input type="number" name="money" style="width:200px;position:absolute;left:50px">
+        <br>
+        <br>
+        <input type="submit" value="Add Expense" style="position: absolute;left:120px;">
+        <br> {{msg1}}
+        <br> {{dic1}}
+        <br>
+    </form>
+
+    <form action="addbalance" method="post" style="position: absolute;left:600px; bottom:250px">
+        {% csrf_token %}
+        <p>add the amount you want to add to the balance.</p>
+        <label style="position: absolute;left:-15px">Amount:</label><input type="number" name="amount" style="width:200px;position:absolute;left:50px">
+        <br>
+        <br>
+        <input type="submit" value="Add Balance" style="position: absolute;left:120px">
+        <br>{{dic2}}
+        <br> {{msg2}}
+    </form>
+    <br>
+    <br>
+    <form action="displayexpense" method="post" style="position: absolute;left:700px;bottom:100px">
+        {% csrf_token %}
+        <table border="2" style="position: absolute;bottom:-150px">
+            <tr>
+                <td>Expense</td>
+                <td>Amount</td>
+            </tr>
+            {% for i in emp %}
+            <tr>
+                <td>{{i.expense}}</td>
+                <td>{{i.cost}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Display Expenses">
+    </form>
+</body>
+
+</html>
